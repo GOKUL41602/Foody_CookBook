@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/foodTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Food Name" />
+
+    <TextView
+        android:id="@+id/foodCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/foodTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:hint="food description" />
+
+
+
+    <TextView
+        android:id="@+id/foodDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/foodCategory"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:hint="food description" />
+
+    <TextView
+        android:id="@+id/foodArea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/foodDesc"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:hint="food Area" />
+
+</RelativeLayout>
