@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,12 +48,13 @@ public class FoodDtoAdapter extends RecyclerView.Adapter<FoodDtoAdapter.ViewHold
                 holder.favourites.setSelected(!holder.favourites.isSelected());
                 if (holder.favourites.isPressed()) {
                     holder.favourites.setImageResource(R.drawable.ic_favourite);
+                    Toast.makeText(context, "Added to Favourites", Toast.LENGTH_SHORT).show();
                 } else {
                     holder.favourites.setImageResource(R.drawable.ic_un_favourite);
+                    Toast.makeText(context, "Removed to Favourites", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
     }
 
     @Override
