@@ -29,11 +29,6 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Converter;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
                 FoodDtoAdapter adapter=new FoodDtoAdapter(randomFoodList,MainActivity.this);
                 recyclerView.setAdapter(adapter);
-//                Toast.makeText(MainActivity.this, randomFoodList.toString(), Toast.LENGTH_SHORT).show();
+                recyclerView.setNestedScrollingEnabled(false);
             }
         });
 

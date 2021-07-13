@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class FoodDtoAdapter extends RecyclerView.Adapter<FoodDtoAdapter.ViewHolder> {
@@ -34,9 +36,11 @@ public class FoodDtoAdapter extends RecyclerView.Adapter<FoodDtoAdapter.ViewHold
     public void onBindViewHolder(@NonNull  FoodDtoAdapter.ViewHolder holder, int position) {
         FoodDto foodDto=foodsList.get(position);
         holder.foodTitle.setText(foodDto.getStrMeal());
-        holder.foodCategory.setText(foodDto.getStrCategory());
-        holder.foodArea.setText(foodDto.getStrArea());
-        holder.foodDesc.setText(foodDto.getStrInstruction());
+        Picasso.with(context)
+                .load(foodDto.getStrMealThumb())
+                .resize(300,300)
+                .into(holder.foodImage);
+
     }
 
     @Override
@@ -50,10 +54,8 @@ public class FoodDtoAdapter extends RecyclerView.Adapter<FoodDtoAdapter.ViewHold
         private ImageView foodImage;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            foodTitle=itemView.findViewById(R.id.foodTitle);
-            foodDesc=itemView.findViewById(R.id.foodDesc);
-            foodArea=itemView.findViewById(R.id.foodArea);
-            foodCategory=itemView.findViewById(R.id.foodCategory);
+            foodTitle=itemView.findViewById(R.id.foodName);
+            foodImage=itemView.findViewById(R.id.foodImage);
         }
     }
 }

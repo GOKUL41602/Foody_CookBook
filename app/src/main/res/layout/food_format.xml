@@ -1,43 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="10dp">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:id="@+id/foodImage"
+        android:src="@drawable/ic_launcher_background"
+        android:layout_centerHorizontal="true"/>
     <TextView
-        android:id="@+id/foodTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/foodName"
+        android:text="Food Name"
+        android:textStyle="bold|italic"
+        android:layout_below="@+id/foodImage"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="Food Name" />
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"/>
 
-    <TextView
-        android:id="@+id/foodCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/foodTitle"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:hint="food description" />
-
-
-
-    <TextView
-        android:id="@+id/foodDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/foodCategory"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:hint="food description" />
-
-    <TextView
-        android:id="@+id/foodArea"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/foodDesc"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:hint="food Area" />
+    <ImageButton
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/ic_un_favourite"
+        android:id="@+id/favouritesBtn"
+        android:layout_below="@+id/foodImage"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/foodName"
+        android:layout_marginLeft="10dp"/>
 
 </RelativeLayout>
