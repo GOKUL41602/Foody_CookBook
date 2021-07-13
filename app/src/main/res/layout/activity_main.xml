@@ -193,6 +193,15 @@
                 android:minEms="20"
                 android:padding="5dp"
                 android:textAlignment="center" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/homePage_backBtn"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:text="Back"
+                android:layout_below="@+id/homePage_instruction"/>
         </RelativeLayout>
     </ScrollView>
 

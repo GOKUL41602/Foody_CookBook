@@ -22,7 +22,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private Button searchBtn;
+    private Button searchBtn,backBtn;
     private SearchView searchView;
     private RelativeLayout filteredRelLayout;
     private ScrollView scrollView;
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
         searchBtn = findViewById(R.id.searchBtn);
+        backBtn=findViewById(R.id.homePage_backBtn);
         searchView = findViewById(R.id.searchView);
         scrollView=findViewById(R.id.scrollView);
         filteredRelLayout = findViewById(R.id.filteredRelLayout);
@@ -57,6 +58,15 @@ public class MainActivity extends AppCompatActivity {
         foodImage = findViewById(R.id.homePage_foodImage);
 
 
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                filteredRelLayout.setVisibility(View.GONE);
+                scrollView.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+            }
+        });
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
