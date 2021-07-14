@@ -88,15 +88,15 @@ public class MainActivity extends AppCompatActivity {
                         Picasso.with(MainActivity.this)
                                 .load(foodDto.getStrMealThumb())
                                 .into(foodImage);
-                        ingredient1.setText(foodDto.getStrIngredient1());
-                        ingredient2.setText(foodDto.getStrIngredient2());
-                        ingredient3.setText(foodDto.getStrIngredient3());
-                        ingredient4.setText(foodDto.getStrIngredient4());
-                        ingredient5.setText(foodDto.getStrIngredient5());
-                        ingredient6.setText(foodDto.getStrIngredient6());
-                        ingredient7.setText(foodDto.getStrIngredient7());
-                        ingredient8.setText(foodDto.getStrIngredient8());
-                        ingredient9.setText(foodDto.getStrIngredient9());
+                        ingredient1.setText(foodDto.getStrMeasure1()+" "+foodDto.getStrIngredient1());
+                        ingredient2.setText(foodDto.getStrMeasure2()+" "+foodDto.getStrIngredient2());
+                        ingredient3.setText(foodDto.getStrMeasure3()+" "+foodDto.getStrIngredient3());
+                        ingredient4.setText(foodDto.getStrMeasure4()+" "+foodDto.getStrIngredient4());
+                        ingredient5.setText(foodDto.getStrMeasure5()+" "+foodDto.getStrIngredient5());
+                        ingredient6.setText(foodDto.getStrMeasure6()+" "+foodDto.getStrIngredient6());
+                        ingredient7.setText(foodDto.getStrMeasure7()+" "+foodDto.getStrIngredient7());
+                        ingredient8.setText(foodDto.getStrMeasure8()+" "+foodDto.getStrIngredient8());
+                        ingredient9.setText(foodDto.getStrMeasure9()+" "+foodDto.getStrIngredient9());
                         foodInstructions.setText(foodDto.getStrInstruction());
                     }
                 });
