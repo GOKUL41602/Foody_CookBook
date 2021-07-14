@@ -40,13 +40,24 @@ public class FavRecyclerAdapter extends RecyclerView.Adapter<FavRecyclerAdapter.
     public void onBindViewHolder(@NonNull FavRecyclerAdapter.ViewHolder holder, int position) {
         FoodDatabaseModel model = foodList.get(position);
         holder.foodTitle.setText(model.getFoodName());
-        String link=model.getFoodLink();
+        String link = model.getFoodLink();
         Picasso.with(context).load(link).into(holder.foodImage);
+        holder.favourites.setImageResource(R.drawable.ic_favourite);
+        holder.favourites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.favourites.setSelected(holder.favourites.isSelected());
+                if(holder.favourites.isPressed())
+                {
+                    holder.favourites.setImageResource(R.drawable.ic_un_favourite);
+                }
+            }
+        });
         holder.foodImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context,MainActivity.class);
-                intent.putExtra("foodName",model.getFoodName());
+                Intent intent = new Intent(context, MainActivity.class);
+                intent.putExtra("foodName", model.getFoodName());
                 context.startActivity(intent);
             }
         });

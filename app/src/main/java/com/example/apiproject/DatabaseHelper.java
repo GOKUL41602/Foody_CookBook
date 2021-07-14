@@ -43,7 +43,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_ID,model.getId());
         cv.put(COLUMN_FOODNAME, model.getFoodName());
         cv.put(COLUMN_FOODLINK, model.getFoodLink());
-        Toast.makeText(context, model.getFoodLink(), Toast.LENGTH_SHORT).show();
         long insert = db.insert(TABLE_NAME, null, cv);
         if (insert == -1) {
             return false;
@@ -51,6 +50,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             return true;
         }
+    }
+
+    public void delete(int id)
+    {
+        SQLiteDatabase db=this.getWritableDatabase();
+
+
     }
 
     public List<FoodDatabaseModel> getAll()
