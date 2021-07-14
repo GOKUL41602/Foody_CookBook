@@ -56,7 +56,6 @@ public class FavRecyclerAdapter extends RecyclerView.Adapter<FavRecyclerAdapter.
                         foodList.remove(position);
                         refreshList(position);
                     } catch (Exception e) {
-                        Toast.makeText(context, "Go back & Try  Again", Toast.LENGTH_SHORT).show();
                     }
 
                 }
@@ -75,6 +74,8 @@ public class FavRecyclerAdapter extends RecyclerView.Adapter<FavRecyclerAdapter.
 
     public void refreshList(int position) {
         notifyItemRemoved(position);
+        notifyDataSetChanged();
+        notifyAll();
     }
 
     @Override
