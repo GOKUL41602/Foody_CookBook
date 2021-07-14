@@ -59,10 +59,8 @@ public class FoodDtoAdapter extends RecyclerView.Adapter<FoodDtoAdapter.ViewHold
                     holder.favourites.setImageResource(R.drawable.ic_favourite);
                     Toast.makeText(context, "Added to Favourites", Toast.LENGTH_SHORT).show();
                     FoodDatabaseModel model = new FoodDatabaseModel(foodDto.getIdMeal(), holder.foodTitle.getText().toString(), foodDto.getStrMealThumb());
-                    Toast.makeText(context, model.getFoodLink(), Toast.LENGTH_SHORT).show();
                     DatabaseHelper helper = new DatabaseHelper(context);
                     boolean success = helper.addOn(model);
-                    Toast.makeText(context, "Success " + success, Toast.LENGTH_SHORT).show();
                 } else {
                     holder.favourites.setImageResource(R.drawable.ic_un_favourite);
                     Toast.makeText(context, "Removed to Favourites", Toast.LENGTH_SHORT).show();

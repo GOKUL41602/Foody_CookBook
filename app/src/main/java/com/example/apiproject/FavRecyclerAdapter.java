@@ -47,14 +47,18 @@ public class FavRecyclerAdapter extends RecyclerView.Adapter<FavRecyclerAdapter.
             @Override
             public void onClick(View v) {
                 holder.favourites.setSelected(holder.favourites.isSelected());
-                if(holder.favourites.isPressed())
-                {
+                if (holder.favourites.isPressed()) {
                     holder.favourites.setImageResource(R.drawable.ic_un_favourite);
-                    DatabaseHelper helper=new DatabaseHelper(context);
-                    foodList.remove(position);
-                    refreshList(position);
-                    FoodDatabaseModel model1 = foodList.get(position);
-                    helper.deleteOne(model1);
+                    try {
+                        DatabaseHelper helper = new DatabaseHelper(context);
+                        FoodDatabaseModel model1 = foodList.get(position);
+                        helper.deleteOne(model1);
+                        foodList.remove(position);
+                        refreshList(position);
+                    } catch (Exception e) {
+                        Toast.makeText(context, "Go back & Try  Again", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             }
         });
@@ -69,8 +73,7 @@ public class FavRecyclerAdapter extends RecyclerView.Adapter<FavRecyclerAdapter.
 
     }
 
-    public void refreshList(int position)
-    {
+    public void refreshList(int position) {
         notifyItemRemoved(position);
     }
 
