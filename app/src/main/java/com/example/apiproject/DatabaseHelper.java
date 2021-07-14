@@ -27,7 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + TABLE_NAME + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_FOODNAME + " TEXT," + COLUMN_FOODLINK + " TEXT)";
+        String createTable = "CREATE TABLE " + TABLE_NAME + "(" + COLUMN_ID + " INTEGER PRIMARY KEY ," + COLUMN_FOODNAME + " TEXT," + COLUMN_FOODLINK + " TEXT)";
         db.execSQL(createTable);
     }
 
@@ -40,6 +40,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
+        cv.put(COLUMN_ID,model.getId());
         cv.put(COLUMN_FOODNAME, model.getFoodName());
         cv.put(COLUMN_FOODLINK, model.getFoodLink());
         Toast.makeText(context, model.getFoodLink(), Toast.LENGTH_SHORT).show();
