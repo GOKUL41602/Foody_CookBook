@@ -22,21 +22,31 @@
         android:layout_marginTop="30dp"
         android:text="Search Food" />
 
+    <Button
+        android:id="@+id/homePage_favouritesBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/searchView"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@+id/searchBtn"
+        android:text="Favs" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_below="@+id/searchBtn"
         android:layout_height="match_parent"
+        android:layout_below="@+id/searchBtn"
         android:layout_marginTop="30dp"
         android:padding="10dp" />
 
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/searchBtn"
-        android:id="@+id/scrollView"
         android:layout_marginTop="10dp">
 
         <RelativeLayout
@@ -195,13 +205,13 @@
                 android:textAlignment="center" />
 
             <Button
+                android:id="@+id/homePage_backBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/homePage_backBtn"
+                android:layout_below="@+id/homePage_instruction"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
-                android:text="Back"
-                android:layout_below="@+id/homePage_instruction"/>
+                android:text="Back" />
         </RelativeLayout>
     </ScrollView>
 
