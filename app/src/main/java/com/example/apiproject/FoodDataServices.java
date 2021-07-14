@@ -39,9 +39,9 @@ public class FoodDataServices {
         void onResponse(List<FoodDto> randomFoodList);
     }
 
-    public void getSearchedFood(SearchFoodListener searchFoodListener) {
+    public void getSearchedFood(String foodName,SearchFoodListener searchFoodListener) {
         List<FoodDto> searchedFood=new ArrayList<>();
-        String url = "https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata";
+        String url = "https://www.themealdb.com/api/json/v1/1/search.php?s="+foodName;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -104,7 +104,7 @@ public class FoodDataServices {
                     foodDto.setStrCreativeCommonsConfirmed(jsonObject.getString("strCreativeCommonsConfirmed"));
                     foodDto.setDateModified(jsonObject.getString("dateModified"));
                     searchedFood.add(foodDto);
-                    searchFoodListener.onResponse(searchedFood);
+                    searchFoodListener.onResponse(searchedFood );
 
 
                 } catch (JSONException e) {

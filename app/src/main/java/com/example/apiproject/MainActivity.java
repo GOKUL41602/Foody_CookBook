@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 recyclerView.setVisibility(View.VISIBLE);
             }
         });
+
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 scrollView.setVisibility(View.VISIBLE);
                 recyclerView.setVisibility(View.GONE);
                 FoodDataServices foodDataServices = new FoodDataServices(MainActivity.this);
-                foodDataServices.getSearchedFood(new FoodDataServices.SearchFoodListener() {
+                foodDataServices.getSearchedFood(searchView.getQuery().toString(),new FoodDataServices.SearchFoodListener() {
                     @Override
                     public void onError(String message) {
 
