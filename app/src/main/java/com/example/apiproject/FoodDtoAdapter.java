@@ -21,6 +21,7 @@ public class FoodDtoAdapter extends RecyclerView.Adapter<FoodDtoAdapter.ViewHold
 
     List<FoodDto> foodsList;
     Context context;
+    String foodLink = "ttps://www.themealdb.com/api/json/v1/1/lookup.php?i=";
 
     public FoodDtoAdapter(List<FoodDto> foodsList, Context context) {
         this.foodsList = foodsList;
@@ -49,6 +50,11 @@ public class FoodDtoAdapter extends RecyclerView.Adapter<FoodDtoAdapter.ViewHold
                 if (holder.favourites.isPressed()) {
                     holder.favourites.setImageResource(R.drawable.ic_favourite);
                     Toast.makeText(context, "Added to Favourites", Toast.LENGTH_SHORT).show();
+                    String link = foodLink + foodDto.getIdMeal();
+                    FoodDatabaseModel model = new FoodDatabaseModel(1, holder.foodTitle.getText().toString(), link);
+                    DatabaseHelper helper = new DatabaseHelper(context);
+                    boolean success = helper.addOn(model);
+                    Toast.makeText(context, "Success " + success, Toast.LENGTH_SHORT).show();
                 } else {
                     holder.favourites.setImageResource(R.drawable.ic_un_favourite);
                     Toast.makeText(context, "Removed to Favourites", Toast.LENGTH_SHORT).show();
