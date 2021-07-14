@@ -20,7 +20,7 @@ public class FoodDataServices {
 
     String foodName;
     int min = 52771;
-    int max = 52790;
+    int max = 52854;
     Context context;
 
     public FoodDataServices(Context context) {
@@ -125,7 +125,7 @@ public class FoodDataServices {
     public void getRandomFoodList(RandomFoodRespone respone) {
         List<FoodDto> randomFoodList = new ArrayList<FoodDto>();
 
-        for (int j = 0; j < 10; j++) {
+        for (int j = 0; j < 15; j++) {
             int id = (int) (Math.random() * (max - min + 1) + min);
             String url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + id;
             List<FoodDto> food = new ArrayList<FoodDto>();

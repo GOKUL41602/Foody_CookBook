@@ -22,17 +22,6 @@
         android:layout_marginTop="30dp"
         android:text="Search Food" />
 
-    <Button
-        android:id="@+id/homePage_favouritesBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/searchView"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_toRightOf="@+id/searchBtn"
-        android:text="Favs" />
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"

@@ -1,5 +1,6 @@
 package com.example.apiproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,11 +8,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +27,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private Button searchBtn, backBtn, favourites;
+    private Button searchBtn, backBtn;
     private SearchView searchView;
     private RelativeLayout filteredRelLayout;
     private ScrollView scrollView;
@@ -58,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
 
         foodImage = findViewById(R.id.homePage_foodImage);
 
-        favourites = findViewById(R.id.homePage_favouritesBtn);
         try {
 
             foodName = getIntent().getStringExtra("foodName");
@@ -67,17 +70,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (foodName == null) {
-
-
-            favourites.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this, Favourites.class);
-                    startActivity(intent);
-                }
-            });
-
-
             backBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -116,14 +108,6 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     showSpecificFood(searchView.getQuery().toString());
-                }
-            });
-
-            favourites.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this, Favourites.class);
-                    startActivity(intent);
                 }
             });
         }
@@ -184,5 +168,26 @@ public class MainActivity extends AppCompatActivity {
                 foodInstructions.setText(foodDto.getStrInstruction());
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.action_button, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.favourites:
+                Intent intent = new Intent(MainActivity.this, Favourites.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+
     }
 }
