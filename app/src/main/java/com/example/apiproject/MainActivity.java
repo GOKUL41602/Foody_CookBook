@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private SearchView searchView;
     private RelativeLayout filteredRelLayout;
     private ScrollView scrollView;
-    private String searchText;
+    private String searchText, foodName;
     private TextView foodInstructions, foodTitle, ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6, ingredient7, ingredient8, ingredient9, ingredient10;
     private ImageView foodImage;
 
@@ -59,62 +59,64 @@ public class MainActivity extends AppCompatActivity {
         foodImage = findViewById(R.id.homePage_foodImage);
 
         favourites = findViewById(R.id.homePage_favouritesBtn);
+        try {
 
-        favourites.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Favourites.class);
-                startActivity(intent);
-            }
-        });
+            foodName = getIntent().getStringExtra("foodName");
+        } catch (Exception e) {
+            foodName = null;
+        }
 
-
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                filteredRelLayout.setVisibility(View.GONE);
-                scrollView.setVisibility(View.GONE);
-                recyclerView.setVisibility(View.VISIBLE);
-            }
-        });
-
-        searchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                filteredRelLayout.setVisibility(View.VISIBLE);
-                scrollView.setVisibility(View.VISIBLE);
-                recyclerView.setVisibility(View.GONE);
-                FoodDataServices foodDataServices = new FoodDataServices(MainActivity.this);
-                foodDataServices.getSearchedFood(searchView.getQuery().toString(), new FoodDataServices.SearchFoodListener() {
-                    @Override
-                    public void onError(String message) {
-
-                    }
-
-                    @Override
-                    public void onResponse(List<FoodDto> searchFoodList) {
-                        FoodDto foodDto = searchFoodList.get(0);
-                        foodTitle.setText(foodDto.getStrMeal());
-                        Picasso.with(MainActivity.this)
-                                .load(foodDto.getStrMealThumb())
-                                .into(foodImage);
-                        ingredient1.setText(foodDto.getStrMeasure1() + " " + foodDto.getStrIngredient1());
-                        ingredient2.setText(foodDto.getStrMeasure2() + " " + foodDto.getStrIngredient2());
-                        ingredient3.setText(foodDto.getStrMeasure3() + " " + foodDto.getStrIngredient3());
-                        ingredient4.setText(foodDto.getStrMeasure4() + " " + foodDto.getStrIngredient4());
-                        ingredient5.setText(foodDto.getStrMeasure5() + " " + foodDto.getStrIngredient5());
-                        ingredient6.setText(foodDto.getStrMeasure6() + " " + foodDto.getStrIngredient6());
-                        ingredient7.setText(foodDto.getStrMeasure7() + " " + foodDto.getStrIngredient7());
-                        ingredient8.setText(foodDto.getStrMeasure8() + " " + foodDto.getStrIngredient8());
-                        ingredient9.setText(foodDto.getStrMeasure9() + " " + foodDto.getStrIngredient9());
-                        foodInstructions.setText(foodDto.getStrInstruction());
-                    }
-                });
-            }
-        });
+        if (foodName == null) {
 
 
+            favourites.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, Favourites.class);
+                    startActivity(intent);
+                }
+            });
+
+
+            backBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    filteredRelLayout.setVisibility(View.GONE);
+                    scrollView.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                }
+            });
+
+            searchBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showSpecificFood(searchView.getQuery().toString());
+                }
+            });
+
+            onStartOperation();
+
+
+        } else {
+            showSpecificFood(foodName);
+
+            backBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    filteredRelLayout.setVisibility(View.GONE);
+                    scrollView.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                    onStartOperation();
+                }
+            });
+        }
+
+
+    }
+
+    public void onStartOperation() {
         FoodDataServices foodDataServices = new FoodDataServices(MainActivity.this);
 
         foodDataServices.getRandomFoodList(new FoodDataServices.RandomFoodRespone() {
@@ -135,6 +137,37 @@ public class MainActivity extends AppCompatActivity {
                 recyclerView.setNestedScrollingEnabled(false);
             }
         });
+    }
 
+    public void showSpecificFood(String foodName) {
+        filteredRelLayout.setVisibility(View.VISIBLE);
+        scrollView.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
+        FoodDataServices foodDataServices = new FoodDataServices(MainActivity.this);
+        foodDataServices.getSearchedFood(foodName, new FoodDataServices.SearchFoodListener() {
+            @Override
+            public void onError(String message) {
+
+            }
+
+            @Override
+            public void onResponse(List<FoodDto> searchFoodList) {
+                FoodDto foodDto = searchFoodList.get(0);
+                foodTitle.setText(foodDto.getStrMeal());
+                Picasso.with(MainActivity.this)
+                        .load(foodDto.getStrMealThumb())
+                        .into(foodImage);
+                ingredient1.setText(foodDto.getStrMeasure1() + " " + foodDto.getStrIngredient1());
+                ingredient2.setText(foodDto.getStrMeasure2() + " " + foodDto.getStrIngredient2());
+                ingredient3.setText(foodDto.getStrMeasure3() + " " + foodDto.getStrIngredient3());
+                ingredient4.setText(foodDto.getStrMeasure4() + " " + foodDto.getStrIngredient4());
+                ingredient5.setText(foodDto.getStrMeasure5() + " " + foodDto.getStrIngredient5());
+                ingredient6.setText(foodDto.getStrMeasure6() + " " + foodDto.getStrIngredient6());
+                ingredient7.setText(foodDto.getStrMeasure7() + " " + foodDto.getStrIngredient7());
+                ingredient8.setText(foodDto.getStrMeasure8() + " " + foodDto.getStrIngredient8());
+                ingredient9.setText(foodDto.getStrMeasure9() + " " + foodDto.getStrIngredient9());
+                foodInstructions.setText(foodDto.getStrInstruction());
+            }
+        });
     }
 }

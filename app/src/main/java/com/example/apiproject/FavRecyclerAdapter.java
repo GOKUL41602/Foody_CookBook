@@ -1,6 +1,7 @@
 package com.example.apiproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,14 @@ public class FavRecyclerAdapter extends RecyclerView.Adapter<FavRecyclerAdapter.
         holder.foodTitle.setText(model.getFoodName());
         String link=model.getFoodLink();
         Picasso.with(context).load(link).into(holder.foodImage);
+        holder.foodImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context,MainActivity.class);
+                intent.putExtra("foodName",model.getFoodName());
+                context.startActivity(intent);
+            }
+        });
 
     }
 
