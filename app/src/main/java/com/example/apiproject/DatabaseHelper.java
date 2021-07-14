@@ -17,12 +17,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME = "FAVOURITES";
     public static final String COLUMN_ID = "ID";
     public static final String COLUMN_FOODNAME = "FOODNAME";
-    public static final String COLUMN_FOODLINK ="FOODLINK";
+    public static final String COLUMN_FOODLINK = "FOODLINK";
 
     Context context;
+
     public DatabaseHelper(@Nullable Context context) {
         super(context, "foodyCookBook.db", null, 1);
-        this.context=context;
+        this.context = context;
     }
 
     @Override
@@ -40,7 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_ID,model.getId());
+        cv.put(COLUMN_ID, model.getId());
         cv.put(COLUMN_FOODNAME, model.getFoodName());
         cv.put(COLUMN_FOODLINK, model.getFoodLink());
         long insert = db.insert(TABLE_NAME, null, cv);
@@ -52,31 +53,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-
-    public List<FoodDatabaseModel> getAll()
-    {
-        List<FoodDatabaseModel> returnList=new ArrayList<>();
-
-        String queryString="SELECT * FROM "+TABLE_NAME;
-
-        SQLiteDatabase db=this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(queryString,null);
-
-        if(cursor.moveToFirst())
-        {
-            do{
-                int id=cursor.getInt(0);
-                String foodName=cursor.getString(1);
-                String foodLink=cursor.getString(2);
-                FoodDatabaseModel model=new FoodDatabaseModel(id,foodName,foodLink);
-                returnList.add(model);
-            }while(cursor.moveToNext());
+    public boolean deleteOne(FoodDatabaseModel model) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String queryString = "DELETE FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + model.getId();
+        Cursor cursor = db.rawQuery(queryString, null);
+        if (cursor.moveToFirst()) {
+            notify();
+            return true;
+        } else {
+            return false;
         }
-        else
-        {
-        cursor.close();
-        db.close();
-        return returnList;
+    }
+
+
+    public List<FoodDatabaseModel> getAll() {
+        List<FoodDatabaseModel> returnList = new ArrayList<>();
+
+        String queryString = "SELECT * FROM " + TABLE_NAME;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(0);
+                String foodName = cursor.getString(1);
+                String foodLink = cursor.getString(2);
+                FoodDatabaseModel model = new FoodDatabaseModel(id, foodName, foodLink);
+                returnList.add(model);
+            } while (cursor.moveToNext());
+        } else {
+            cursor.close();
+            db.close();
+            return returnList;
         }
         return returnList;
     }

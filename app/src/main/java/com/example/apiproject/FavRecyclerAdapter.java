@@ -50,6 +50,9 @@ public class FavRecyclerAdapter extends RecyclerView.Adapter<FavRecyclerAdapter.
                 if(holder.favourites.isPressed())
                 {
                     holder.favourites.setImageResource(R.drawable.ic_un_favourite);
+                    DatabaseHelper helper=new DatabaseHelper(context);
+                    FoodDatabaseModel model1 = foodList.get(position);
+                    helper.deleteOne(model1);
                 }
             }
         });
