@@ -52,12 +52,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void delete(int id)
-    {
-        SQLiteDatabase db=this.getWritableDatabase();
-
-
-    }
 
     public List<FoodDatabaseModel> getAll()
     {
