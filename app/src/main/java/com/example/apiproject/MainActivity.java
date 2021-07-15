@@ -178,6 +178,13 @@ public class MainActivity extends AppCompatActivity {
                 foodInstructions.setText(foodDto.getStrInstruction());
             }
         });
+
+        if (foodTitle.getText().equals("Food Name")) {
+            Toast.makeText(this, "Dish Currently Unavailable", Toast.LENGTH_SHORT).show();
+            onStartOperation();
+
+        }
+
     }
 
     @Override
