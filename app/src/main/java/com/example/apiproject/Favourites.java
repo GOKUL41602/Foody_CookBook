@@ -53,6 +53,5 @@ public class Favourites extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
 
-
     }
 }

@@ -77,7 +77,6 @@ public class FoodDtoAdapter extends RecyclerView.Adapter<FoodDtoAdapter.ViewHold
         });
     }
 
-
     @Override
     public int getItemCount() {
         return foodsList.size();
