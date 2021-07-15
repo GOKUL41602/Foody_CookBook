@@ -39,6 +39,7 @@ public class FoodDataServices {
         void onResponse(List<FoodDto> randomFoodList);
     }
 
+    // In this method using the input foodName we will get the data from the api and store it into the list.
     public void getSearchedFood(String foodName, SearchFoodListener searchFoodListener) {
         List<FoodDto> searchedFood = new ArrayList<>();
         String url = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + foodName;
@@ -126,6 +127,7 @@ public class FoodDataServices {
         MySingleton.getInstance(context).addToRequestQueue(jsonObjectRequest);
     }
 
+    // In this method we will get all the DishName based on the randomId generated from the min, max range and return it into the list.
     public void getRandomFoodList(RandomFoodRespone respone) {
         List<FoodDto> randomFoodList = new ArrayList<FoodDto>();
 
@@ -208,7 +210,7 @@ public class FoodDataServices {
                 }
             });
 
-
+            // in this line we will pass the context and pass the request into MySingleton class to create an instance.
             MySingleton.getInstance(context).addToRequestQueue(request);
         }
 

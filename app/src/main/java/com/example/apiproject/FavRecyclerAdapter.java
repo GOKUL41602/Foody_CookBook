@@ -50,6 +50,7 @@ public class FavRecyclerAdapter extends RecyclerView.Adapter<FavRecyclerAdapter.
         holder.favourites.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // based on the iconButton image,data in the database will be added or deleted.
                 holder.favourites.setSelected(holder.favourites.isSelected());
                 if (holder.favourites.isPressed()) {
                     holder.favourites.setImageResource(R.drawable.ic_un_favourite);
