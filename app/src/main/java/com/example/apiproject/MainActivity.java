@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
 
             onStartOperation();
 
-
         } else {
             showSpecificFood(foodName);
 
@@ -88,8 +87,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-
-
     }
 
     private void initializeViews() {

@@ -69,8 +69,6 @@ public class FoodDtoAdapter extends RecyclerView.Adapter<FoodDtoAdapter.ViewHold
                     boolean success = helper.addOn(model);
                     try {
                         helper.deleteOne(model);
-                        foodsList.remove(position);
-                        refreshList(position);
                     } catch (Exception e) {
                     }
                     Toast.makeText(context, "Removed to Favourites", Toast.LENGTH_SHORT).show();
@@ -79,11 +77,6 @@ public class FoodDtoAdapter extends RecyclerView.Adapter<FoodDtoAdapter.ViewHold
         });
     }
 
-    public void refreshList(int position) {
-        notifyItemRemoved(position);
-        notifyDataSetChanged();
-        notifyAll();
-    }
 
     @Override
     public int getItemCount() {
