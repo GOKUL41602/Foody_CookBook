@@ -37,6 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    // it will obtain the data from the UI and store the favourite food into the SQL Database.
     public boolean addOn(FoodDatabaseModel model) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -53,6 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    // it will delete the unFavourite food obtained data from UI and delete it's existence in the Database.
     public boolean deleteOne(FoodDatabaseModel model) {
         SQLiteDatabase db = this.getWritableDatabase();
         String queryString = "DELETE FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + model.getId();
@@ -65,7 +67,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-
+    // It will get all the stored favourite food from the database and store it into the list and return to the required method.
     public List<FoodDatabaseModel> getAll() {
         List<FoodDatabaseModel> returnList = new ArrayList<>();
 

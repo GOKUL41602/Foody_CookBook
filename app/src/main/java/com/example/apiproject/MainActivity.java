@@ -28,6 +28,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    //initializing all the widgets and views.
     private RecyclerView recyclerView;
     private Button searchBtn, backBtn;
     private SearchView searchView;
@@ -40,19 +41,20 @@ public class MainActivity extends AppCompatActivity {
     private TextView foodInstructions, foodTitle, ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6, ingredient7, ingredient8, ingredient9, ingredient10;
     private ImageView foodImage;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initializeViews();
 
+        //it helps from preventing the app from crashing when the foodName was null.
         try {
             foodName = getIntent().getStringExtra("foodName");
         } catch (Exception e) {
             foodName = null;
         }
 
+        //if foodName was null it will display the recyclerView and hide the filteredRelLayout.
         if (foodName == null) {
             backBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -104,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
             onStartOperation();
 
+            //if foodName was null it will display the filteredRelLayout and hide the recyclerView.
         } else {
             progressBar.setVisibility(View.VISIBLE);
             showSpecificFood(foodName);
@@ -160,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //initializing all the views inside this method.
     private void initializeViews() {
         recyclerView = findViewById(R.id.recyclerView);
         searchBtn = findViewById(R.id.searchBtn);
@@ -185,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressbar);
         favButton = findViewById(R.id.homePage_fav);
     }
-
+    //this method will get the data from the FoodDataServices and display the obtained data in the recyclerView.
     public void onStartOperation() {
 
         FoodDataServices foodDataServices = new FoodDataServices(MainActivity.this);
@@ -211,6 +215,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //if searchButton is clicked, it will get the input from the SearchView and display the particular Searched Food into the filteredRelLayout.
     public void showSpecificFood(String foodName) {
         progressBar.setVisibility(View.GONE);
         filteredRelLayout.setVisibility(View.VISIBLE);
