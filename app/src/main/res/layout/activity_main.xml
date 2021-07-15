@@ -53,7 +53,9 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:text="Food Name"
-                android:textSize="18sp" />
+                android:textColor="@color/pink"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
 
             <ImageView
                 android:id="@+id/homePage_foodImage"
@@ -72,125 +74,166 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:text="Ingredients"
+                android:textColor="@color/pink"
                 android:textSize="20sp"
-                android:textStyle="italic" />
+                android:textStyle="italic|bold" />
 
             <TextView
                 android:id="@+id/homePage_ingredient1"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/homePage_ingredientsTitle"
+                android:layout_alignParentLeft="true"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="20sp"
                 android:hint="Ingredient 1"
+                android:minEms="10"
+                android:minLines="3"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/homePage_ingredient2"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/homePage_ingredientsTitle"
-                android:layout_marginLeft="60dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="20sp"
+                android:layout_marginRight="40dp"
                 android:layout_toRightOf="@+id/homePage_ingredient1"
                 android:hint="Ingredient 2"
+                android:minEms="10"
+                android:minLines="3"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/homePage_ingredient3"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/homePage_ingredient1"
+                android:layout_alignParentLeft="true"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="20sp"
                 android:hint="Ingredient 3"
+                android:minEms="10"
+                android:minLines="3"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/homePage_ingredient4"
-                android:layout_width="wrap_content"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/homePage_ingredient2"
-                android:layout_marginLeft="60dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="20sp"
+                android:layout_marginRight="40dp"
                 android:layout_toRightOf="@+id/homePage_ingredient3"
                 android:hint="Ingredient 4"
+                android:minLines="3"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/homePage_ingredient5"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/homePage_ingredient3"
+                android:layout_alignParentLeft="true"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="20sp"
                 android:hint="Ingredient 5"
+
+                android:minLines="3"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/homePage_ingredient6"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/homePage_ingredient4"
-                android:layout_marginLeft="60dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="20sp"
+                android:layout_marginRight="40dp"
                 android:layout_toRightOf="@+id/homePage_ingredient5"
                 android:hint="Ingredient 6"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/homePage_ingredient7"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/homePage_ingredient5"
+                android:layout_alignParentLeft="true"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="20sp"
                 android:hint="Ingredient 7"
+
+                android:minLines="3"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/homePage_ingredient8"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/homePage_ingredient6"
-                android:layout_marginLeft="60dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="20sp"
+                android:layout_marginRight="40dp"
                 android:layout_toRightOf="@+id/homePage_ingredient7"
-                android:hint="Ingredient 8"
+                android:minLines="3"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/homePage_ingredient9"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/homePage_ingredient7"
+                android:layout_alignParentLeft="true"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="20sp"
                 android:hint="Ingredient 9"
+                android:minEms="10"
+                android:minLines="3"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/homePage_ingredient10"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/homePage_ingredient8"
+                android:layout_alignParentRight="true"
                 android:layout_marginLeft="60dp"
                 android:layout_marginTop="20sp"
+                android:layout_marginRight="40dp"
                 android:layout_toRightOf="@+id/homePage_ingredient9"
                 android:hint="Ingredient 10"
+                android:minLines="3"
                 android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/homepage_instructionTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/homePage_ingredient9"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:text="Instructions"
+                android:textColor="@color/pink"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
 
             <TextView
                 android:id="@+id/homePage_instruction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/homePage_ingredient10"
+                android:layout_below="@+id/homepage_instructionTitle"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:gravity="center_horizontal"
                 android:hint="Instructions for Creating Dish"
-                android:minEms="20"
-                android:padding="5dp"
+                android:padding="10dp"
                 android:textAlignment="center" />
 
             <Button

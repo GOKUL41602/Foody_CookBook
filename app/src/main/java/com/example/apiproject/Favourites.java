@@ -23,16 +23,13 @@ public class Favourites extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favourites);
         recyclerView = findViewById(R.id.favourites_recView);
-
         DatabaseHelper helper = new DatabaseHelper(Favourites.this);
         List<FoodDatabaseModel> foodList = helper.getAll();
         adapter = new FavRecyclerAdapter(Favourites.this, foodList);
-
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
-
     }
 
     @Override
