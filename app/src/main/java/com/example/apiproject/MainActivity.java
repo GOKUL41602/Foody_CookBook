@@ -66,7 +66,12 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     progressBar.setVisibility(View.VISIBLE);
                     showSpecificFood(searchView.getQuery().toString());
-
+                    if (filteredRelLayout.getVisibility() == View.VISIBLE) {
+                        if (foodTitle.getText().equals("Food Name")) {
+                            Toast.makeText(MainActivity.this, "Dish Unavailable", Toast.LENGTH_SHORT).show();
+                            onStartOperation();
+                        }
+                    }
                 }
             });
 
@@ -91,6 +96,12 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     showSpecificFood(searchView.getQuery().toString());
+                    if (filteredRelLayout.getVisibility() == View.VISIBLE) {
+                        if (foodTitle.getText().equals("Food Name")) {
+                            Toast.makeText(MainActivity.this, "Dish Unavailable", Toast.LENGTH_SHORT).show();
+                            onStartOperation();
+                        }
+                    }
 
                 }
             });
@@ -178,13 +189,6 @@ public class MainActivity extends AppCompatActivity {
                 foodInstructions.setText(foodDto.getStrInstruction());
             }
         });
-
-        if (foodTitle.getText().equals("Food Name")) {
-            Toast.makeText(this, "Dish Currently Unavailable", Toast.LENGTH_SHORT).show();
-            onStartOperation();
-
-        }
-
     }
 
     @Override
