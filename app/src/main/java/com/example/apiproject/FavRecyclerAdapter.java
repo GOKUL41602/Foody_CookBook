@@ -38,6 +38,10 @@ public class FavRecyclerAdapter extends RecyclerView.Adapter<FavRecyclerAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull FavRecyclerAdapter.ViewHolder holder, int position) {
+
+        if (foodList.isEmpty()) {
+            Toast.makeText(context, "No Favourite food available", Toast.LENGTH_SHORT).show();
+        }
         FoodDatabaseModel model = foodList.get(position);
         holder.foodTitle.setText(model.getFoodName());
         String link = model.getFoodLink();

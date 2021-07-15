@@ -17,6 +17,7 @@ public class Favourites extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private FavRecyclerAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,17 +25,22 @@ public class Favourites extends AppCompatActivity {
         recyclerView = findViewById(R.id.favourites_recView);
         DatabaseHelper helper = new DatabaseHelper(Favourites.this);
         List<FoodDatabaseModel> foodList = helper.getAll();
+        if (foodList.isEmpty()) {
+            Toast.makeText(this, "No Dishes in Favourites List", Toast.LENGTH_SHORT).show();
+        }
         adapter = new FavRecyclerAdapter(Favourites.this, foodList);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.home_menu, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
