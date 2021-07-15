@@ -20,10 +20,11 @@ import java.util.List;
 public class FoodDtoAdapter extends RecyclerView.Adapter<FoodDtoAdapter.ViewHolder> {
 
 
-    List<FoodDto> foodsList;
+    List foodsList;
     Context context;
 
-    public FoodDtoAdapter(List<FoodDto> foodsList, Context context) {
+
+    public FoodDtoAdapter(List foodsList, Context context) {
         this.foodsList = foodsList;
         this.context = context;
     }
@@ -37,7 +38,7 @@ public class FoodDtoAdapter extends RecyclerView.Adapter<FoodDtoAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull FoodDtoAdapter.ViewHolder holder, int position) {
-        FoodDto foodDto = foodsList.get(position);
+        FoodDto foodDto = (FoodDto) foodsList.get(position);
         holder.foodTitle.setText(foodDto.getStrMeal());
         Picasso.with(context)
                 .load(foodDto.getStrMealThumb())
@@ -63,10 +64,25 @@ public class FoodDtoAdapter extends RecyclerView.Adapter<FoodDtoAdapter.ViewHold
                     boolean success = helper.addOn(model);
                 } else {
                     holder.favourites.setImageResource(R.drawable.ic_un_favourite);
+                    DatabaseHelper helper = new DatabaseHelper(context);
+                    FoodDatabaseModel model = new FoodDatabaseModel(foodDto.getIdMeal(), holder.foodTitle.getText().toString(), foodDto.getStrMealThumb());
+                    boolean success = helper.addOn(model);
+                    try {
+                        helper.deleteOne(model);
+                        foodsList.remove(position);
+                        refreshList(position);
+                    } catch (Exception e) {
+                    }
                     Toast.makeText(context, "Removed to Favourites", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+
+    public void refreshList(int position) {
+        notifyItemRemoved(position);
+        notifyDataSetChanged();
+        notifyAll();
     }
 
     @Override
