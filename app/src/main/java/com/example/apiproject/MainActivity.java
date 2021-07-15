@@ -40,30 +40,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        recyclerView = findViewById(R.id.recyclerView);
-        searchBtn = findViewById(R.id.searchBtn);
-        backBtn = findViewById(R.id.homePage_backBtn);
-        searchView = findViewById(R.id.searchView);
-        scrollView = findViewById(R.id.scrollView);
-        filteredRelLayout = findViewById(R.id.filteredRelLayout);
-        foodTitle = findViewById(R.id.homePage_foodName);
-        foodInstructions = findViewById(R.id.homePage_instruction);
-        ingredient1 = findViewById(R.id.homePage_ingredient1);
-        ingredient2 = findViewById(R.id.homePage_ingredient2);
-        ingredient3 = findViewById(R.id.homePage_ingredient3);
-        ingredient4 = findViewById(R.id.homePage_ingredient4);
-        ingredient5 = findViewById(R.id.homePage_ingredient5);
-        ingredient6 = findViewById(R.id.homePage_ingredient6);
-        ingredient7 = findViewById(R.id.homePage_ingredient7);
-        ingredient8 = findViewById(R.id.homePage_ingredient8);
-        ingredient9 = findViewById(R.id.homePage_ingredient9);
-        ingredient10 = findViewById(R.id.homePage_ingredient10);
-
-        foodImage = findViewById(R.id.homePage_foodImage);
+        initializeViews();
 
         try {
-
             foodName = getIntent().getStringExtra("foodName");
         } catch (Exception e) {
             foodName = null;
@@ -73,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
             backBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     filteredRelLayout.setVisibility(View.GONE);
                     scrollView.setVisibility(View.GONE);
                     recyclerView.setVisibility(View.VISIBLE);
@@ -96,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
             backBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     filteredRelLayout.setVisibility(View.GONE);
                     scrollView.setVisibility(View.GONE);
                     recyclerView.setVisibility(View.VISIBLE);
@@ -113,6 +90,29 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    private void initializeViews() {
+        recyclerView = findViewById(R.id.recyclerView);
+        searchBtn = findViewById(R.id.searchBtn);
+        backBtn = findViewById(R.id.homePage_backBtn);
+        searchView = findViewById(R.id.searchView);
+        scrollView = findViewById(R.id.scrollView);
+        filteredRelLayout = findViewById(R.id.filteredRelLayout);
+        foodTitle = findViewById(R.id.homePage_foodName);
+        foodInstructions = findViewById(R.id.homePage_instruction);
+        ingredient1 = findViewById(R.id.homePage_ingredient1);
+        ingredient2 = findViewById(R.id.homePage_ingredient2);
+        ingredient3 = findViewById(R.id.homePage_ingredient3);
+        ingredient4 = findViewById(R.id.homePage_ingredient4);
+        ingredient5 = findViewById(R.id.homePage_ingredient5);
+        ingredient6 = findViewById(R.id.homePage_ingredient6);
+        ingredient7 = findViewById(R.id.homePage_ingredient7);
+        ingredient8 = findViewById(R.id.homePage_ingredient8);
+        ingredient9 = findViewById(R.id.homePage_ingredient9);
+        ingredient10 = findViewById(R.id.homePage_ingredient10);
+
+        foodImage = findViewById(R.id.homePage_foodImage);
     }
 
     public void onStartOperation() {
