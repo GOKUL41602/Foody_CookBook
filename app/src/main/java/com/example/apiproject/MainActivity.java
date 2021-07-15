@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -32,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
     private SearchView searchView;
     private RelativeLayout filteredRelLayout;
     private ScrollView scrollView;
-    private String searchText, foodName;
+    private int foodIDForDB;
+    private String searchText, foodName, foodTitleForDB, foodImageUrlForDB;
+    private ImageButton favButton;
     private ProgressBar progressBar;
     private TextView foodInstructions, foodTitle, ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6, ingredient7, ingredient8, ingredient9, ingredient10;
     private ImageView foodImage;
@@ -75,6 +78,30 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
+            favButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    favButton.setSelected(!favButton.isSelected());
+                    if (favButton.isPressed()) {
+                        favButton.setImageResource(R.drawable.ic_favourite);
+                        Toast.makeText(MainActivity.this, "Added to Favourites", Toast.LENGTH_SHORT).show();
+                        FoodDatabaseModel model = new FoodDatabaseModel(foodIDForDB, foodTitleForDB, foodImageUrlForDB);
+                        DatabaseHelper helper = new DatabaseHelper(MainActivity.this);
+                        boolean success = helper.addOn(model);
+                    } else {
+                        favButton.setImageResource(R.drawable.ic_un_favourite);
+                        DatabaseHelper helper = new DatabaseHelper(MainActivity.this);
+                        FoodDatabaseModel model = new FoodDatabaseModel(foodIDForDB, foodTitleForDB, foodImageUrlForDB);
+                        boolean success = helper.addOn(model);
+                        try {
+                            helper.deleteOne(model);
+                        } catch (Exception e) {
+                        }
+                        Toast.makeText(MainActivity.this, "Removed to Favourites", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
             onStartOperation();
 
         } else {
@@ -89,6 +116,31 @@ public class MainActivity extends AppCompatActivity {
                     scrollView.setVisibility(View.GONE);
                     recyclerView.setVisibility(View.VISIBLE);
                     onStartOperation();
+                }
+            });
+
+            favButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    favButton.setSelected(!favButton.isSelected());
+                    if (favButton.isPressed()) {
+                        favButton.setImageResource(R.drawable.ic_favourite);
+                        Toast.makeText(MainActivity.this, "Added to Favourites", Toast.LENGTH_SHORT).show();
+                        FoodDatabaseModel model = new FoodDatabaseModel(foodIDForDB, foodTitleForDB, foodImageUrlForDB);
+                        DatabaseHelper helper = new DatabaseHelper(MainActivity.this);
+                        boolean success = helper.addOn(model);
+                    } else {
+                        favButton.setImageResource(R.drawable.ic_un_favourite);
+                        DatabaseHelper helper = new DatabaseHelper(MainActivity.this);
+                        FoodDatabaseModel model = new FoodDatabaseModel(foodIDForDB, foodTitleForDB, foodImageUrlForDB);
+                        boolean success = helper.addOn(model);
+                        try {
+                            helper.deleteOne(model);
+                        } catch (Exception e) {
+                        }
+                        Toast.makeText(MainActivity.this, "Removed to Favourites", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             });
 
@@ -131,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
         foodImage = findViewById(R.id.homePage_foodImage);
 
         progressBar = findViewById(R.id.progressbar);
+        favButton = findViewById(R.id.homePage_fav);
     }
 
     public void onStartOperation() {
@@ -187,6 +240,10 @@ public class MainActivity extends AppCompatActivity {
                 ingredient8.setText(foodDto.getStrMeasure8() + " " + foodDto.getStrIngredient8());
                 ingredient9.setText(foodDto.getStrMeasure9() + " " + foodDto.getStrIngredient9());
                 foodInstructions.setText(foodDto.getStrInstruction());
+
+                foodTitleForDB = foodDto.getStrMeal();
+                foodImageUrlForDB = foodDto.getStrMealThumb();
+                foodIDForDB = foodDto.getIdMeal();
             }
         });
     }
