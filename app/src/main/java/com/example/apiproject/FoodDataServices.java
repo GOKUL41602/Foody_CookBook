@@ -39,16 +39,16 @@ public class FoodDataServices {
         void onResponse(List<FoodDto> randomFoodList);
     }
 
-    public void getSearchedFood(String foodName,SearchFoodListener searchFoodListener) {
-        List<FoodDto> searchedFood=new ArrayList<>();
-        String url = "https://www.themealdb.com/api/json/v1/1/search.php?s="+foodName;
+    public void getSearchedFood(String foodName, SearchFoodListener searchFoodListener) {
+        List<FoodDto> searchedFood = new ArrayList<>();
+        String url = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + foodName;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
                     JSONArray jsonArray = response.getJSONArray("meals");
                     JSONObject jsonObject = jsonArray.getJSONObject(0);
-                    FoodDto foodDto=new FoodDto();
+                    FoodDto foodDto = new FoodDto();
 
                     foodDto.setIdMeal(jsonObject.getInt("idMeal"));
                     foodDto.setStrMeal(jsonObject.getString("strMeal"));
@@ -104,8 +104,12 @@ public class FoodDataServices {
                     foodDto.setStrCreativeCommonsConfirmed(jsonObject.getString("strCreativeCommonsConfirmed"));
                     foodDto.setDateModified(jsonObject.getString("dateModified"));
                     searchedFood.add(foodDto);
-                    searchFoodListener.onResponse(searchedFood );
+                    searchFoodListener.onResponse(searchedFood);
 
+
+                    if (jsonObject.getString("strMeal") == null) {
+                        Toast.makeText(context, "Dish currenty unavailable", Toast.LENGTH_SHORT).show();
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();

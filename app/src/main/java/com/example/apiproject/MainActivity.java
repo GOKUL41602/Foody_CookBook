@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     progressBar.setVisibility(View.VISIBLE);
                     showSpecificFood(searchView.getQuery().toString());
+
                 }
             });
 
@@ -90,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     showSpecificFood(searchView.getQuery().toString());
+
                 }
             });
         }
@@ -117,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
         foodImage = findViewById(R.id.homePage_foodImage);
 
-        progressBar=findViewById(R.id.progressbar);
+        progressBar = findViewById(R.id.progressbar);
     }
 
     public void onStartOperation() {
@@ -195,7 +197,5 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
-
     }
 }
