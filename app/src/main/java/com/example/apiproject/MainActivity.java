@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Switch;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private RelativeLayout filteredRelLayout;
     private ScrollView scrollView;
     private String searchText, foodName;
+    private ProgressBar progressBar;
     private TextView foodInstructions, foodTitle, ingredient1, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6, ingredient7, ingredient8, ingredient9, ingredient10;
     private ImageView foodImage;
 
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
             backBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    progressBar.setVisibility(View.GONE);
                     filteredRelLayout.setVisibility(View.GONE);
                     scrollView.setVisibility(View.GONE);
                     recyclerView.setVisibility(View.VISIBLE);
@@ -61,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
             searchBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    progressBar.setVisibility(View.VISIBLE);
                     showSpecificFood(searchView.getQuery().toString());
                 }
             });
@@ -68,7 +72,9 @@ public class MainActivity extends AppCompatActivity {
             onStartOperation();
 
         } else {
+            progressBar.setVisibility(View.VISIBLE);
             showSpecificFood(foodName);
+
 
             backBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -110,9 +116,12 @@ public class MainActivity extends AppCompatActivity {
         ingredient10 = findViewById(R.id.homePage_ingredient10);
 
         foodImage = findViewById(R.id.homePage_foodImage);
+
+        progressBar=findViewById(R.id.progressbar);
     }
 
     public void onStartOperation() {
+
         FoodDataServices foodDataServices = new FoodDataServices(MainActivity.this);
 
         foodDataServices.getRandomFoodList(new FoodDataServices.RandomFoodRespone() {
@@ -125,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(List<FoodDto> randomFoodList) {
                 filteredRelLayout.setVisibility(View.GONE);
                 scrollView.setVisibility(View.GONE);
+                progressBar.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
@@ -136,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showSpecificFood(String foodName) {
+        progressBar.setVisibility(View.GONE);
         filteredRelLayout.setVisibility(View.VISIBLE);
         scrollView.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
